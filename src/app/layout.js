@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'For Her | 15.09.2025',
-  description: 'A soft confession, a memory, a feeling growing quietly.',
+  title: 'For Her ❤️ | 15.09.2025',
+  description: 'From the red chair moment to now — a heartfelt confession, a growing feeling, and a simple question from the heart.',
 };
 
 export const viewport = {

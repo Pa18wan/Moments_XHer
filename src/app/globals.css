@@ -1,20 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Dancing+Script:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
 :root {
   --blush-pink: #ffe4e1;
   --rose-tone: #ffb6c1;
   --cream-white: #fffafa;
   --soft-red: #ff6b6b;
-  --deep-rose: #d87093;
-  --glass-bg: rgba(255, 255, 255, 0.25);
-  --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-  --text-dark: #4a4a4a;
-  --text-light: #6e6e6e;
+  --deep-rose: #c2506a;
+  --warm-rose: #e8788a;
+  --subtle-lavender: #e8d5e0;
+  --golden-glow: #f5d9a0;
+  --glass-bg: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.45);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.12);
+  --text-dark: #3d2e3a;
+  --text-light: #7a6173;
+  --text-muted: #a692a0;
   --background-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
   --font-body: 'Outfit', sans-serif;
   --font-serif: 'Playfair Display', serif;
   --font-cursive: 'Dancing Script', cursive;
+  --font-elegant: 'Cormorant Garamond', serif;
 }
 
 * {
@@ -29,8 +34,7 @@ body {
   overflow-x: hidden;
   font-family: var(--font-body);
   color: var(--text-dark);
-  background: #f0f2f5;
-  /* Fallback */
+  background: #f8f0f2;
   scroll-behavior: smooth;
 }
 
@@ -42,8 +46,9 @@ body::before {
   width: 100vw;
   height: 100vh;
   background:
-    radial-gradient(circle at 15% 50%, rgba(255, 228, 225, 0.8), transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(255, 182, 193, 0.8), transparent 25%);
+    radial-gradient(circle at 15% 50%, rgba(255, 228, 225, 0.6), transparent 30%),
+    radial-gradient(circle at 85% 30%, rgba(255, 182, 193, 0.5), transparent 30%),
+    radial-gradient(circle at 50% 80%, rgba(232, 213, 224, 0.4), transparent 30%);
   z-index: -2;
   pointer-events: none;
 }
@@ -56,11 +61,11 @@ a {
 /* Glassmorphism Utility */
 .glass {
   background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--glass-border);
   box-shadow: var(--glass-shadow);
-  border-radius: 20px;
+  border-radius: 24px;
 }
 
 /* Liquid Blob Animation */
@@ -102,9 +107,9 @@ section {
 .floating-heart {
   position: absolute;
   color: var(--soft-red);
-  opacity: 0.3;
+  opacity: 0.25;
   pointer-events: none;
-  animation: float 10s infinite linear;
+  animation: float 12s infinite linear;
 }
 
 @keyframes float {
@@ -119,8 +124,8 @@ section {
 
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fade-in.visible {
@@ -128,9 +133,106 @@ section {
   transform: translateY(0);
 }
 
+/* Stagger animations for children */
+.stagger-children.visible>* {
+  animation: staggerFadeIn 0.8s ease forwards;
+}
+
+.stagger-children>*:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-children>*:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-children>*:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stagger-children>*:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.stagger-children>*:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.stagger-children>*:nth-child(6) {
+  animation-delay: 0.6s;
+}
+
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--deep-rose), var(--warm-rose), var(--golden-glow), var(--warm-rose), var(--deep-rose));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Typewriter effect */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: var(--deep-rose);
+  }
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(194, 80, 106, 0.1), 0 0 60px rgba(194, 80, 106, 0.05);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(194, 80, 106, 0.2), 0 0 80px rgba(194, 80, 106, 0.1);
+  }
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -138,9 +240,14 @@ section {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(216, 112, 147, 0.5);
-  /* Semi-transparent deep rose */
+  background: linear-gradient(to bottom, rgba(194, 80, 106, 0.4), rgba(232, 120, 138, 0.4));
   border-radius: 10px;
   border: 2px solid transparent;
   background-clip: content-box;
+}
+
+/* Text selection */
+::selection {
+  background: rgba(255, 182, 193, 0.4);
+  color: var(--text-dark);
 }
